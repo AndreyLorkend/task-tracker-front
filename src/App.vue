@@ -3,8 +3,11 @@
 
 <template lang="pug">
 v-app
-  app-body-text
+  router-view
 </template>
 
 <style scoped>
+* {
+  background-color: var(--app-color-background);
+}
 </style>

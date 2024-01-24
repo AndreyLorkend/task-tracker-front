@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
 * {
-  font-family: 'Space Grotesk'
+  font-family: 'Space Grotesk'; 
+  overflow: hidden;
+}
+:root {
+  --app-color-background: #DEE1F8;
+  --app-text-color: rgba(49, 50, 55, 0.8); 
+  --app-column-color: #FFFFFF;
+  --app-card-background-color: rgba(222, 225, 248, 0.2);
 }
