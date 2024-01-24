@@ -3,7 +3,7 @@
 
 <template lang="pug">
 v-app
-  div Hello Gay's
+  app-body-text
 </template>
 
 <style scoped>
