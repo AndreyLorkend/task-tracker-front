@@ -28,6 +28,27 @@ import ColumnLayout from "./ColumnLayout.vue";
 .dashboard-layout-column {
   display: flex;
   gap: 25px;
-  margin: 0 25px;
+  margin: 0px 25px;
+  overflow-x: auto;
+}
+
+.dashboard-layout-column::-webkit-scrollbar-track
+{
+	background-color: #F5F5F5;
+  height: 4px;
+  width: 4px;
+
+}
+
+.dashboard-layout-column::-webkit-scrollbar
+{
+	background-color: #F5F5F5;
+  height: 4px;
+  width: 4px;
+}
+
+.dashboard-layout-column::-webkit-scrollbar-thumb
+{
+	background-color: var(--app-text-color);
 }
 </style>
