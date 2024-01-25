@@ -1,10 +1,20 @@
 <script setup>
 import TaskCard from "./TaskCard.vue";
+import { useCardStore } from '../store/card.store'
+import { onMounted } from "vue";
+
+const store = useCardStore()
+
+onMounted(() => {
+  store.getAllCards()
+})
 </script>
 
 <template lang="pug">
 .column-layout--container
-  app-title column name
+  .column-layout--title-container
+    .circle
+    app-title column name
   .column-layout--task-list
     task-card
   app-button.column-layout--button Добавить новую задачу
@@ -35,6 +45,12 @@ import TaskCard from "./TaskCard.vue";
   gap: 30px;
 }
 
+.column-layout--title-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .column-layout--button {
   background-color: #EAFFD8;
 }
@@ -61,5 +77,12 @@ import TaskCard from "./TaskCard.vue";
 .column-layout--task-list::-webkit-scrollbar-thumb
 {
 	background-color: transparent;
+}
+
+.circle {
+  width: 15px; 
+  height: 15px;
+  border-radius: 100%;
+  background-color: red;
 }
 </style>

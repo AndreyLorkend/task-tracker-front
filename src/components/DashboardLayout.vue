@@ -1,5 +1,13 @@
 <script setup>
 import ColumnLayout from "./ColumnLayout.vue";
+import { useColumnStore } from '../store/column.store'
+import { onMounted } from "vue";
+
+const store = useColumnStore()
+
+onMounted(() => {
+  store.fetchColumns()
+})
 </script>
 
 <template lang="pug">
