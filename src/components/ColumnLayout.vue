@@ -4,11 +4,10 @@ import TaskCard from "./TaskCard.vue";
 
 <template lang="pug">
 .column-layout--container
-  div
-    app-title.pb-6 column name
+  app-title column name
+  .column-layout--task-list
     task-card
-  div
-    app-button.column-layout--button Добавить новую задачу
+  app-button.column-layout--button Добавить новую задачу
 </template>
 
 <style scoped>
@@ -20,7 +19,10 @@ import TaskCard from "./TaskCard.vue";
   max-width: 400px;
   min-width: 400px;
   width: 400px;
+
   height: 750px;
+  min-height: 750px;
+  max-height: 750px;
 
   border-radius: 30px;
   background: #FFF;
@@ -29,9 +31,35 @@ import TaskCard from "./TaskCard.vue";
   justify-content: space-between;
 
   text-align: center;
+
+  gap: 30px;
 }
 
 .column-layout--button {
   background-color: #EAFFD8;
+}
+
+.column-layout--task-list {
+  overflow-y:scroll;
+  flex: 1;
+}
+.column-layout--task-list::-webkit-scrollbar-track
+{
+	background-color: transparent;
+  height: 4px;
+  width: 4px;
+
+}
+
+.column-layout--task-list::-webkit-scrollbar
+{
+	background-color: transparent;
+  height: 4px;
+  width: 4px;
+}
+
+.column-layout--task-list::-webkit-scrollbar-thumb
+{
+	background-color: transparent;
 }
 </style>
