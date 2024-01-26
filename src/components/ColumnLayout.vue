@@ -15,6 +15,7 @@ onMounted(() => {
   .column-layout--title-container
     .circle
     app-title column name
+    v-icon.column-layout--icon mdi-delete
   .column-layout--task-list
     task-card
   app-button.column-layout--button Добавить новую задачу
@@ -84,5 +85,10 @@ onMounted(() => {
   height: 15px;
   border-radius: 100%;
   background-color: red;
+}
+
+.column-layout--icon {
+  color: var(--app-text-color); 
+  cursor: pointer;
 }
 </style>
