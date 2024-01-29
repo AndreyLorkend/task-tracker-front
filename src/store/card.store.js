@@ -7,13 +7,16 @@ export const useCardStore = defineStore('useCardStore', {
     allCards: [],
   }),
 
+  getters: {
+    getColumnCards: (state) => (columnId) => state.allCards.filter( card => card.columnId == columnId),
+  },
+
   actions: {
     getAllCards() {
       return CardService.getAllDashboardCards().then(data => {
         this.allCards = data.map(item => new Card(item))
-        console.log('карточки', this.allCards)
       })
-    }
+    },
   }
 })
 

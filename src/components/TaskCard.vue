@@ -1,8 +1,15 @@
+<script setup>
+
+const props = defineProps({
+  card: null
+})
+</script>
+
+
 <template lang="pug">
-//- Отрисовка самих карточек
 .task-card--container
-  app-title haha
-  app-body-text haha
+  app-title {{ card.title }}
+  app-body-text {{ card.description }}
 </template>
 
 <style scoped>

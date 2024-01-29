@@ -1,12 +1,20 @@
 <script setup>
 import TaskCard from "./TaskCard.vue";
 import { useCardStore } from '../store/card.store'
-import { onMounted } from "vue";
+import { computed, onMounted } from "vue";
+
+const props = defineProps({
+  column: null
+})
 
 const store = useCardStore()
 
+const cardList = computed(() => {
+  return store.getColumnCards(props.column.id)
+})
+
 onMounted(() => {
-  store.getAllCards()
+  store.getAllCards() 
 })
 </script>
 
@@ -14,10 +22,10 @@ onMounted(() => {
 .column-layout--container
   .column-layout--title-container
     .circle
-    app-title column name
+    app-title {{ column.title }}
     v-icon.column-layout--icon mdi-delete
   .column-layout--task-list
-    task-card
+    task-card( v-for="card in cardList" :card="card" )
   app-button.column-layout--button Добавить новую задачу
 </template>
 

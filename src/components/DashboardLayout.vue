@@ -15,7 +15,7 @@ onMounted(() => {
   .dashboard-layout-header--text タスクリスト
   app-button Добавить новую колонку
 .dashboard-layout-column
-  column-layout
+  column-layout( v-for="column in store.allColumns" :column="column" )
 </template>
 
 <style scoped>
