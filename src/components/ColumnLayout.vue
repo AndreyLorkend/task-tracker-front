@@ -1,17 +1,27 @@
 <script setup>
 import TaskCard from "./TaskCard.vue";
+import DeleteColumnDialog from './DeleteColumnDialog.vue'
 import { useCardStore } from '../store/card.store'
-import { computed, onMounted } from "vue";
+import { useColumnStore } from '../store/column.store'
+import { computed, onMounted, ref } from "vue";
+
+const cardStore = useCardStore()
+const columnStore = useColumnStore()
 
 const props = defineProps({
   column: null
 })
 
-const store = useCardStore()
+const isDeleting = ref(false)
 
 const cardList = computed(() => {
-  return store.getColumnCards(props.column.id)
+  return cardStore.getColumnCards(props.column.id)
 })
+
+function deleteColumn(id) {
+  columnStore.deleteColumn(id)
+  isDeleting.value = false
+}
 </script>
 
 <template lang="pug">
@@ -19,10 +29,11 @@ const cardList = computed(() => {
   .column-layout--title-container
     .circle
     app-title {{ column.title }}
-    v-icon.column-layout--icon mdi-delete
+    v-icon.column-layout--icon(@click="isDeleting = !isDeleting") mdi-delete
   .column-layout--task-list
     task-card( v-for="card in cardList" :card="card" )
   app-button.column-layout--button Добавить новую задачу
+delete-column-dialog( :visible="isDeleting" @close="isDeleting = false" @delete="deleteColumn(column.id)" )
 </template>
 
 <style scoped>
