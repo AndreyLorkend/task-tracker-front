@@ -1,21 +1,29 @@
 <script setup>
 import ColumnLayout from "./ColumnLayout.vue";
+import AddColumnDialog from './AddColumnDialog.vue'
 import { useColumnStore } from '../store/column.store'
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 
 const store = useColumnStore()
+
+const isDialog = ref(false)
 
 onMounted(() => {
   store.fetchColumns()
 })
+
+function openAddColumnDialog() {
+  isDialog.value = !isDialog.value
+}
 </script>
 
 <template lang="pug">
 .dashboard-layout-header 
   .dashboard-layout-header--text タスクリスト
-  app-button Добавить новую колонку
+  app-button(@click="openAddColumnDialog") Добавить новую колонку
 .dashboard-layout-column
   column-layout( v-for="column in store.allColumns" :column="column" )
+add-column-dialog( :visible="isDialog" @close="isDialog = false" )
 </template>
 
 <style scoped>
