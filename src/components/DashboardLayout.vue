@@ -2,14 +2,17 @@
 import ColumnLayout from "./ColumnLayout.vue";
 import AddColumnDialog from './AddColumnDialog.vue'
 import { useColumnStore } from '../store/column.store'
+import { useCardStore } from '../store/card.store'
 import { onMounted, ref } from "vue";
 
-const store = useColumnStore()
+const columnStore = useColumnStore()
+const cardStore = useCardStore()
 
 const isDialog = ref(false)
 
 onMounted(() => {
-  store.fetchColumns()
+  columnStore.fetchColumns()
+  cardStore.getAllCards()
 })
 
 function openAddColumnDialog() {
@@ -22,7 +25,7 @@ function openAddColumnDialog() {
   .dashboard-layout-header--text タスクリスト
   app-button(@click="openAddColumnDialog") Добавить новую колонку
 .dashboard-layout-column
-  column-layout( v-for="column in store.allColumns" :column="column" )
+  column-layout( v-for="column in columnStore.allColumns" :column="column" )
 add-column-dialog( :visible="isDialog" @close="isDialog = false" )
 </template>
 

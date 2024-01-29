@@ -13,7 +13,7 @@ export const useCardStore = defineStore('useCardStore', {
 
   actions: {
     getAllCards() {
-      return CardService.getAllDashboardCards().then(data => {
+      CardService.getAllDashboardCards().then(data => {
         this.allCards = data.map(item => new Card(item))
       })
     },

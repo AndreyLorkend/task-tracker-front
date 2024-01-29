@@ -12,10 +12,6 @@ const store = useCardStore()
 const cardList = computed(() => {
   return store.getColumnCards(props.column.id)
 })
-
-onMounted(() => {
-  store.getAllCards() 
-})
 </script>
 
 <template lang="pug">
