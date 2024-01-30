@@ -19,8 +19,10 @@ export const useColumnStore = defineStore('useColumnStore', {
     },
 
     deleteColumn(columnId) {
-      ColumnService.deleteColumn(columnId)
+      ColumnService.deleteColumn(columnId).then(() => {
+        this.allColumns = this.allColumns.filter(item => item.id != columnId)
+        return this.allColumns
+      })
     }
-
   }
 })
