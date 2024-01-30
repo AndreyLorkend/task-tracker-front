@@ -1,6 +1,7 @@
 <script setup>
 import TaskCard from "./TaskCard.vue";
-import DeleteColumnDialog from './DeleteColumnDialog.vue'
+import DeleteDialog from './DeleteDialog.vue'
+import AddCardDialog from './AddCardDialog.vue'
 import { useCardStore } from '../store/card.store'
 import { useColumnStore } from '../store/column.store'
 import { computed, onMounted, ref } from "vue";
@@ -13,6 +14,7 @@ const props = defineProps({
 })
 
 const isDeleting = ref(false)
+const isAdding = ref(false)
 
 const cardList = computed(() => {
   return cardStore.getColumnCards(props.column.id)
@@ -29,11 +31,12 @@ function deleteColumn(id) {
   .column-layout--title-container
     .circle
     app-title {{ column.title }}
-    v-icon.column-layout--icon(@click="isDeleting = !isDeleting") mdi-delete
+    v-icon.column-layout--icon( @click="isDeleting = !isDeleting" ) mdi-delete
   .column-layout--task-list
     task-card( v-for="card in cardList" :card="card" )
-  app-button.column-layout--button Добавить новую задачу
-delete-column-dialog( :visible="isDeleting" @close="isDeleting = false" @delete="deleteColumn(column.id)" )
+  app-button.column-layout--button( @click="isAdding = !isAdding" ) Добавить новую задачу
+delete-dialog( :visible="isDeleting" :itemName="'колонку'" @close="isDeleting = false" @delete="deleteColumn(column.id)" )
+add-card-dialog( :visible="isAdding" :columnId="column.id" @close="isAdding = false" )
 </template>
 
 <style scoped>

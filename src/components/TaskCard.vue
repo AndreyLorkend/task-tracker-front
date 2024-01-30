@@ -1,15 +1,29 @@
 <script setup>
+import { ref } from "vue";
+import DeleteDialog from './DeleteDialog.vue'
+import { useCardStore } from '../store/card.store'
+
+const cardStore = useCardStore()
 
 const props = defineProps({
   card: null
 })
-</script>
 
+const isDeleting = ref(false)
+
+function deleteCard(id) {
+  cardStore.deleteCard(id)
+  isDeleting.value = false
+}
+</script>
 
 <template lang="pug">
 .task-card--container
-  app-title {{ card.title }}
+  .d-flex.align-center
+    app-title.mr-2 {{ card.title }}
+    v-icon.task-card--icon(@click="isDeleting = !isDeleting") mdi-delete
   app-body-text {{ card.description }}
+delete-dialog( :visible="isDeleting" :itemName="'карточку'" @close="isDeleting = false" @delete="deleteCard(card.id)")
 </template>
 
 <style scoped>
@@ -24,6 +38,11 @@ const props = defineProps({
   flex-direction: column;
   padding: 25px;
   margin-bottom: 25px;
+}
+
+.task-card--icon {
+  color: var(--app-text-color); 
+  cursor: pointer;
 }
 </style>
 

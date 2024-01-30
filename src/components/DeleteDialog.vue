@@ -2,7 +2,8 @@
 import { computed } from "vue";
 
 const props = defineProps({
-  visible: Boolean
+  visible: Boolean,
+  itemName: String
 })
 
 const emit = defineEmits(['close', 'delete'])
@@ -22,7 +23,7 @@ const show = computed({
 v-dialog( v-model="show" width="500" )
   v-card 
     .add-dialog--container
-      app-title Вы действительно хотите удалить колонку?
+      app-title Вы действительно хотите удалить {{ itemName }}?
       .d-flex.justify-center
         app-button.mr-3.add-button--color(@click="emit('delete')") Удалить
         app-button.cancel-button--color(@click="emit('close')") Отменить

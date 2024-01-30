@@ -17,6 +17,14 @@ export const useCardStore = defineStore('useCardStore', {
         this.allCards = data.map(item => new Card(item))
       })
     },
+
+    addCard(card) {
+      CardService.addCard(card)
+    },
+
+    deleteCard(cardId) {
+      CardService.deleteCard(cardId)
+    }
   }
 })
 
