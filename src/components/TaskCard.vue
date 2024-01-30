@@ -19,10 +19,10 @@ function deleteCard(id) {
 
 <template lang="pug">
 .task-card--container
-  .d-flex.align-center
+  .d-flex.align-center.justify-space-between.task-card-title--width
     app-title.mr-2 {{ card.title }}
-    v-icon.task-card--icon(@click="isDeleting = !isDeleting") mdi-delete
-  app-body-text {{ card.description }}
+    v-icon.task-card--icon(@click="isDeleting = !isDeleting" size="small") mdi-delete
+  app-body-text.mt-4 {{ card.description }}
 delete-dialog( :visible="isDeleting" :itemName="'карточку'" @close="isDeleting = false" @delete="deleteCard(card.id)")
 </template>
 
@@ -34,7 +34,7 @@ delete-dialog( :visible="isDeleting" :itemName="'карточку'" @close="isDe
   background: rgba(222, 225, 248, 0.20);
 
   display: flex; 
-  align-items: center;
+  align-items: flex-start;
   flex-direction: column;
   padding: 25px;
   margin-bottom: 25px;
@@ -43,6 +43,10 @@ delete-dialog( :visible="isDeleting" :itemName="'карточку'" @close="isDe
 .task-card--icon {
   color: var(--app-text-color); 
   cursor: pointer;
+}
+
+.task-card-title--width {
+  width: 100%;
 }
 </style>
 
