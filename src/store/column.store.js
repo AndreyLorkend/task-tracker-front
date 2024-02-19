@@ -15,7 +15,9 @@ export const useColumnStore = defineStore('useColumnStore', {
     },
 
     addNewColumn(column) {
-      ColumnService.addNewColumn(column)
+      ColumnService.addNewColumn(column).then(data => {
+        this.allColumns.push(new Column(data))
+      })
     },
 
     deleteColumn(columnId) {

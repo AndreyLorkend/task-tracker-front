@@ -20,12 +20,11 @@ export const useCardStore = defineStore('useCardStore', {
 
     addCard(card) {
       CardService.addCard(card).then(data => {
-        console.log(data)
+        this.allCards.push(new Card(data))
       })
     },
 
     deleteCard(cardId) {
-      console.log(cardId)
       CardService.deleteCard(cardId).then(() => {
         this.allCards = this.allCards.filter(item => item.id != cardId)
         return this.allCards
